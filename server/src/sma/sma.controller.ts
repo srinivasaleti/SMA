@@ -1,9 +1,9 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import axios from 'axios';
-import { FundamentalsRepository } from './balance.sheet.repository';
+import { FundamentalsRepository } from './fundamentals.repository';
 @Controller()
 export class SMAController {
-  constructor(private readonly fundamentalRepo:FundamentalsRepository) {}
+  constructor(private readonly fundamentalRepo: FundamentalsRepository) { }
 
   @Get('/balance-sheet/:id/:type')
   async balanceSheet(@Param() params) {
@@ -30,6 +30,11 @@ export class SMAController {
   @Get('/peers/report/:id/')
   async peersReport(@Param() params) {
     return this.fundamentalRepo.peersReport(params.id);
+  }
+
+  @Get('/holdings/:id')
+  async holdings(@Param() params) {
+    return this.fundamentalRepo.holdings(params.id);
   }
 
 }

@@ -1,5 +1,5 @@
-import {Module} from '@nestjs/common';
-import { FundamentalsRepository } from './balance.sheet.repository';
+import { Module } from '@nestjs/common';
+import { FundamentalsRepository } from './fundamentals.repository';
 import { SMAController } from './sma.controller';
 import { TickerTapeTransformer } from './tickertape.transformer';
 
@@ -7,4 +7,4 @@ import { TickerTapeTransformer } from './tickertape.transformer';
   controllers: [SMAController],
   providers: [FundamentalsRepository, TickerTapeTransformer]
 })
-export class SMAModule {}
+export class SMAModule { }
