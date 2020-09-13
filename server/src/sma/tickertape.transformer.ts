@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class TickerTapeTransformer {
   transformBalanceSheet(data: any) {
+    console.log(data)
     return data?.data?.map(x => {
       return {
         displayPeriod: x.displayPeriod,
@@ -45,19 +46,18 @@ export class TickerTapeTransformer {
 
 
   async transformHoldings(data: any) {
-    return data.map(x => {
+
+    return data?.map(x => {
       const _data = x.data;
       return {
         date: x?.date,
-        data: {
-          'totalPromoterHolding': _data.pmPctT,
-          'mPctP': _data.pmPctP,
-          'plPctT': _data.plPctT,
-          'mutualFundHolding': _data.mfPctT,
-          'isPctT': _data.isPctT,
-          'DomesticInstitutionalHoldings': _data.diPctT,
-          'foreignInstitutionalHoldings': _data.fiPctT,
-        }
+        'totalPromoterHolding': _data.pmPctT,
+        'mPctP': _data.pmPctP,
+        'plPctT': _data.plPctT,
+        'mutualFundHolding': _data.mfPctT,
+        'isPctT': _data.isPctT,
+        'domesticInstitutionalHoldings': _data.diPctT,
+        'foreignInstitutionalHoldings': _data.fiPctT,
       };
     });
   }

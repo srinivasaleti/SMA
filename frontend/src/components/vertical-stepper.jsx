@@ -13,6 +13,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { ShareHoldersEquity } from './ShareHoldersEquity';
 import { DERatio } from './DERatio';
+import { HOLDINGS } from './Holdings';
 
 
 const useStyles = makeStyles((theme) => {
@@ -46,7 +47,7 @@ const useStyles = makeStyles((theme) => {
 
 
 function getSteps() {
-  return ['Share Holders Equity', 'ROE', 'Debt To Equity Ratio', 'Create an ad'];
+  return ['Share Holders Equity', 'ROE', 'Debt To Equity Ratio', 'Share Holdings'];
 }
 
 function getStepContent(step, peersData) {
@@ -57,6 +58,8 @@ function getStepContent(step, peersData) {
       return <ROE peersData={peersData} />;
     case 2:
       return <DERatio peersData={peersData} />;
+    case 3:
+      return <HOLDINGS peersData={peersData} />;
     default:
       return 'Unknown step';
   }

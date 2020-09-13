@@ -1,6 +1,7 @@
 import { Box, Card, List, ListItem, makeStyles } from '@material-ui/core';
 import * as React from 'react'
 import { CardTitleTypography } from './typography';
+import { floatUpto2Decimals } from './utils';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -24,10 +25,10 @@ const useStyles = makeStyles((theme) => {
 });
 
 
-export const DetailsCard = (props) => {
+export const FinancialDetailsCard = (props) => {
   const classes = useStyles();
 
-  const report = props.data?.report || {};
+  const report = props.data?.report?.financials || {};
   const name = props.data?.name
   return (
     <Card className={classes.root}>
@@ -37,7 +38,7 @@ export const DetailsCard = (props) => {
           return (
             <ListItem key={year} className={classes.listItem}>
               <h3>{year}</h3>
-              <h4>{Number(report[year][props.property]).toFixed(2)} {props.suffix}</h4>
+              <h4>{floatUpto2Decimals(report[year][props.property])} {props.suffix}</h4>
             </ListItem>
           )
         })}

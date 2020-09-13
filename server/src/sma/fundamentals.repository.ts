@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
+import { FRGService } from './finance.report.service';
 import { debtToEquityRatio, ROE, shareHoldingEquity } from './sma.helpers';
 import { TickerTapeTransformer } from './tickertape.transformer';
 
 @Injectable()
 export class FundamentalsRepository {
-  constructor(private tickerTapeTransformer: TickerTapeTransformer) { }
+  constructor(private tickerTapeTransformer: TickerTapeTransformer, private frgService: FRGService) { }
   // NOTE: type can be normal, growth
   async balanceSheet(id, type, count = 10) {
     const url = `https://api.tickertape.in/stocks/financials/balancesheet/${id}/annual/${type}?count=${count}`;
@@ -45,35 +46,14 @@ export class FundamentalsRepository {
 
 
   async report(id) {
-    const promises = await Promise.all([this.income(id, 'normal'), this.balanceSheet(id, 'normal')]);
-    const incomeStatement = promises[0].reduce((acc, curr) => {
-      const displayPeriod = curr.displayPeriod;
-      return { ...acc, [displayPeriod.split(' ')[1]]: curr };
-    }, {});
-    const balanceSheet = promises[1].reduce((acc, curr) => {
-      const displayPeriod = curr.displayPeriod;
-      return { ...acc, [displayPeriod.split(' ')[1]]: curr };
-    }, {});
-    const result = {};
+    const promises = await Promise.all([
+      this.income(id, 'normal'), this.balanceSheet(id, 'normal'), this.holdings(id)
+    ]);
+    const _incomeStatement = promises[0];
+    const _balanceSheet = promises[1];
 
-    Object.keys(incomeStatement).map(x => {
-      const incomeStatementOfYear = incomeStatement[x];
-      const balanceSheetOfYear = balanceSheet[x];
-      const _shareHoldingEquity = shareHoldingEquity(balanceSheetOfYear);
-      const netIncome = incomeStatementOfYear?.netIncome;
-      const totalLiabilities = balanceSheetOfYear?.totalLiabilities;
-      result[x] = {
-        netIncome: incomeStatementOfYear?.netIncome,
-        totalAsset: balanceSheetOfYear?.totalAsset,
-        totalLiabilities: balanceSheetOfYear?.totalLiabilities,
-        shareHoldingEquity: _shareHoldingEquity,
-        ROE: ROE(netIncome, _shareHoldingEquity),
-        debtToEquityRatio: debtToEquityRatio(totalLiabilities, _shareHoldingEquity)
-      };
-    });
-    return { [id]: result };
+    const result = this.frgService.generateReport(_incomeStatement, _balanceSheet);
+    return { [id]: { financials: result, holdings: promises[2] } };
   }
-
-
 
 }

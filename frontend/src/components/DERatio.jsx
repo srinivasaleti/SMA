@@ -48,7 +48,7 @@ export const DERatio = (props) => {
 
         <KeyTakeaways title={"D/E"} keyTakeaways={keyTakeaways} />
       </Box>
-      <PeersReport data={data} property="debtToEquityRatio" suffix="%" />
+      <PeersReport data={data} property="debtToEquityRatio" suffix="%" type='FINANCIALS' />
     </Box>
   )
 }

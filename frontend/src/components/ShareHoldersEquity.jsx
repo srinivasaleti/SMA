@@ -47,7 +47,7 @@ export const ShareHoldersEquity = (props) => {
 
         <KeyTakeaways title={"ROE"} keyTakeaways={keyTakeaways} />
       </Box>
-      <PeersReport data={data} property="shareHoldingEquity" suffix="cr" />
+      <PeersReport data={data} property="shareHoldingEquity" suffix="cr" type='FINANCIALS' />
     </Box>
   )
 }

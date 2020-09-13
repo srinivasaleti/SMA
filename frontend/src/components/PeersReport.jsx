@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { DetailsCard } from './DetailsCard';
+import { FinancialDetailsCard } from './FinancialDetailsCard';
+import { HoldingsCard } from './HoldingsCard';
 import { Box } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -28,13 +29,23 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PeersReport(props) {
   const classes = useStyles();
-
+  const type = props.type;
   const data = props.data || {};
+
+  const getCard = (id) => {
+    if (type === 'FINANCIALS') {
+      return <FinancialDetailsCard property={props.property} title={id} data={data[id]} suffix={props.suffix} />
+    }
+    if (type === 'HOLDING') {
+      return <HoldingsCard property={props.property} title={id} data={data[id]} suffix={props.suffix} />
+    }
+  }
+
   return (
     <div className={classes.root}>
       {Object.keys(props?.data).map((id) => (
         <Box m={1} >
-          <DetailsCard property={props.property} title={id} data={data[id]} suffix={props.suffix} />
+          {getCard(id)}
         </Box>
       ))}
     </div>
