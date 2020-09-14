@@ -1,13 +1,12 @@
 import { ThemeProvider } from '@material-ui/core';
 import React from 'react';
-import VerticalLinearStepper from './components/vertical-stepper';
 import { theme } from './theme';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
+import VerticalLinearStepper from './containers/vertical-stepper';
 
 function App() {
   return (

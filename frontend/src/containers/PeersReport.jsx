@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { FinancialDetailsCard } from './FinancialDetailsCard';
-import { HoldingsCard } from './HoldingsCard';
+import { FinancialDetailsCard } from '../components/FinancialDetailsCard';
+import { HoldingsCard } from '../components/HoldingsCard';
 import { Box } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({

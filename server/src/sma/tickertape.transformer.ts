@@ -3,7 +3,6 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class TickerTapeTransformer {
   transformBalanceSheet(data: any) {
-    console.log(data)
     return data?.data?.map(x => {
       return {
         displayPeriod: x.displayPeriod,

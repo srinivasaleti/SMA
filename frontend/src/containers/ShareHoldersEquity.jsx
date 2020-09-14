@@ -1,7 +1,7 @@
 import { Box, makeStyles } from '@material-ui/core';
 import * as React from 'react'
-import { ParaTypography, SubTitleTextTypography, TitleTextTypography } from './typography';
-import { KeyTakeaways } from './KeyTakeaways';
+import { ParaTypography, SubTitleTextTypography, TitleTextTypography } from '../components/typography';
+import { KeyTakeaways } from '../components/KeyTakeaways';
 import PeersReport from './PeersReport';
 
 const useStyles = makeStyles((theme) => {
