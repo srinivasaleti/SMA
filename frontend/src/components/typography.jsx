@@ -2,7 +2,6 @@ const { withStyles, Typography } = require('@material-ui/core');
 
 export const TitleTextTypography = withStyles({
   root: {
-    color: "#FFFFFF",
     fontSize: "56px",
     fontWeight: "bold",
     fontFamily: "Calibri",
@@ -12,7 +11,6 @@ export const TitleTextTypography = withStyles({
 
 export const SubTitleTextTypography = withStyles({
   root: {
-    color: "#D3EEDD",
     fontSize: "32px",
     fontWeight: "bold",
     fontFamily: "Calibri",
@@ -32,7 +30,6 @@ export const CardTitleTypography = withStyles({
 
 export const ParaTypography = withStyles({
   root: {
-    color: "#FFFFFF",
     padding: "4px",
     marginBottom: "8px",
     fontSize: "20px",

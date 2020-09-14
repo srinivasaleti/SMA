@@ -7,13 +7,11 @@ import PeersReport from './PeersReport';
 const useStyles = makeStyles((theme) => {
   return {
     root: {
+      maxWidth: '1200px',
       margin: 'auto',
+      overflow: 'none',
       minHeight: '70vh',
       fontSize: '15px'
-    },
-    content: {
-      maxWidth: '70%',
-      margin: 'auto'
     }
   }
 });
@@ -21,6 +19,8 @@ const useStyles = makeStyles((theme) => {
 
 export const ROE = (props) => {
   const classes = useStyles();
+
+  const data = props.data;
 
   const keyTakeaways = [
     "Return on equity (ROE) measures how effectively management is using a company’s assets to create profits.",
@@ -31,7 +31,6 @@ export const ROE = (props) => {
     "Consistent increasing in ROE over last 5 to 10 years is a good stock."
   ]
 
-  const data = props.peersData;
   return (
     <Box className={classes.root}>
       <Box className={classes.content}>

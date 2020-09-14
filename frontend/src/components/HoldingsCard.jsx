@@ -8,17 +8,14 @@ const useStyles = makeStyles((theme) => {
   return {
     root: {
       minHeight: '400px',
-      backgroundColor: '#333333',
-      color: 'white',
+      color: theme.text.primary,
     },
     tableCell: {
-      color: 'white',
-      fontWeight: '20px',
+      fontSize: '16px',
       fontWeight: 'bold',
       width: '200px'
     },
     tableHead: {
-      color: 'white',
       fontWeight: 'bold',
       fontSize: '20px',
       width: '200px'
@@ -30,50 +27,52 @@ const useStyles = makeStyles((theme) => {
 export const HoldingsCard = (props) => {
   const classes = useStyles();
 
-  const holdings = props.data?.report?.holdings || {};
+  const holdings = props.data?.report?.holdings || [];
   const name = props.data?.name
 
 
   return (
-    <TableContainer className={classes.root} component={Paper}>
-      <CardTitleTypography>{name}</CardTitleTypography>
-      <Table aria-label="simple table">
-        <TableHead >
-          <TableRow>
-            <TableCell className={classes.tableHead}>Date</TableCell>
-            <TableCell className={classes.tableHead} align="center">Promoter</TableCell>
-            <TableCell className={classes.tableHead} align="center">FII(g)</TableCell>
-            <TableCell className={classes.tableHead} align="center">DII</TableCell>
-            <TableCell className={classes.tableHead} align="center">MII</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {
-            holdings.map(holding => {
-              return (
-                <TableRow key={name}>
-                  <TableCell className={classes.tableCell} component="th" scope="row" align="right">
-                    {new Date(holding.date).toDateString()}
-                  </TableCell>
-                  <TableCell className={classes.tableCell} component="th" scope="row" align="center">
-                    {floatUpto2Decimals(holding?.totalPromoterHolding)}
-                  </TableCell>
-                  <TableCell className={classes.tableCell} component="th" scope="row" align="center">
-                    {floatUpto2Decimals(holding?.foreignInstitutionalHoldings)}
-                  </TableCell>
-                  <TableCell className={classes.tableCell} component="th" scope="row" align="center">
-                    {floatUpto2Decimals(holding?.domesticInstitutionalHoldings)}
-                  </TableCell>
-                  <TableCell className={classes.tableCell} component="th" scope="row" align="center">
-                    {floatUpto2Decimals(holding?.mutualFundHolding)}
-                  </TableCell>
-                </TableRow>
-              )
-            })
-          }
-        </TableBody>
-      </Table>
-    </TableContainer >
 
+    holdings.length ? (
+      <TableContainer className={classes.root} component={Paper}>
+        <CardTitleTypography>{name}</CardTitleTypography>
+        <Table aria-label="simple table">
+          <TableHead >
+            <TableRow>
+              <TableCell className={classes.tableHead}>Date</TableCell>
+              <TableCell className={classes.tableHead} align="center">Promoter</TableCell>
+              <TableCell className={classes.tableHead} align="center">FII(g)</TableCell>
+              <TableCell className={classes.tableHead} align="center">DII</TableCell>
+              <TableCell className={classes.tableHead} align="center">MII</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {
+              holdings?.map(holding => {
+                return (
+                  <TableRow key={name}>
+                    <TableCell className={classes.tableCell} component="th" scope="row" align="right">
+                      {new Date(holding.date).toDateString()}
+                    </TableCell>
+                    <TableCell className={classes.tableCell} component="th" scope="row" align="center">
+                      {floatUpto2Decimals(holding?.totalPromoterHolding)}
+                    </TableCell>
+                    <TableCell className={classes.tableCell} component="th" scope="row" align="center">
+                      {floatUpto2Decimals(holding?.foreignInstitutionalHoldings)}
+                    </TableCell>
+                    <TableCell className={classes.tableCell} component="th" scope="row" align="center">
+                      {floatUpto2Decimals(holding?.domesticInstitutionalHoldings)}
+                    </TableCell>
+                    <TableCell className={classes.tableCell} component="th" scope="row" align="center">
+                      {floatUpto2Decimals(holding?.mutualFundHolding)}
+                    </TableCell>
+                  </TableRow>
+                )
+              })
+            }
+          </TableBody>
+        </Table>
+      </TableContainer >
+    ) : <div></div>
   )
 }

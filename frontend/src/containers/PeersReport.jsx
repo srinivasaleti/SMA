@@ -10,16 +10,14 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     overflow: 'scroll',
-    margin: 'auto'
+    margin: 'auto',
   },
   gridList: {
     flexWrap: 'nowrap',
     // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: 'translateZ(0)',
   },
-  title: {
-    color: theme.palette.primary.light,
-  },
+
   titleBar: {
     background:
       'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
@@ -29,8 +27,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PeersReport(props) {
   const classes = useStyles();
-  const type = props.type;
-  const data = props.data || {};
+  const type = props?.type;
+  const data = props?.data || {};
 
   const getCard = (id) => {
     if (type === 'FINANCIALS') {
@@ -43,7 +41,7 @@ export default function PeersReport(props) {
 
   return (
     <div className={classes.root}>
-      {Object.keys(props?.data).map((id) => (
+      {Object.keys(data)?.map((id) => (
         <Box m={1} >
           {getCard(id)}
         </Box>

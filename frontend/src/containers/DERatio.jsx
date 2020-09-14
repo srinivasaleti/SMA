@@ -7,13 +7,11 @@ import PeersReport from './PeersReport';
 const useStyles = makeStyles((theme) => {
   return {
     root: {
+      maxWidth: '1200px',
       margin: 'auto',
+      overflow: 'none',
       minHeight: '70vh',
       fontSize: '15px'
-    },
-    content: {
-      maxWidth: '70%',
-      margin: 'auto'
     }
   }
 });
@@ -30,7 +28,8 @@ export const DERatio = (props) => {
     "D/E with more than 1% is dangerous"
   ]
 
-  const data = props?.peersData;
+  const data = props.data;
+
   return (
     <Box className={classes.root}>
       <Box className={classes.content}>

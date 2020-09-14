@@ -1,4 +1,4 @@
-import { Box, Card, List, ListItem, makeStyles } from '@material-ui/core';
+import { Card, List, ListItem, makeStyles } from '@material-ui/core';
 import * as React from 'react'
 import { CardTitleTypography } from './typography';
 import { floatUpto2Decimals } from './utils';
@@ -9,8 +9,7 @@ const useStyles = makeStyles((theme) => {
       width: '300px',
       minHeight: '200px',
       fontSize: '15px',
-      backgroundColor: '#333333',
-      color: 'white',
+      color: theme.text.primary,
     },
     list: {
       height: '400px',

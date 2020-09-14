@@ -1,4 +1,4 @@
-import { Box, List, ListItem, ListItemIcon, makeStyles } from '@material-ui/core';
+import { Box, List, ListItem, ListItemIcon } from '@material-ui/core';
 import * as React from 'react'
 import { ParaTypography, SubTitleTextTypography } from './typography';
 import StarIcon from '@material-ui/icons/Star';

@@ -3,21 +3,16 @@ import React from 'react';
 import { theme } from './theme';
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
+
 } from "react-router-dom";
-import VerticalLinearStepper from './containers/vertical-stepper';
+import Dashboard from './containers/Dashboard';
 
 function App() {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
         <Router>
-          <Switch>
-            <Route path="/sma/:id">
-              <VerticalLinearStepper />
-            </Route>
-          </Switch>
+          <Dashboard />
         </Router>
       </ThemeProvider>
     </div>
