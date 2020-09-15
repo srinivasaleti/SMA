@@ -81,12 +81,6 @@ export default function Dashboard() {
       </Drawer>
       <main className={classes.content}>
         <Box width={500} m={"auto"} >
-          {/* <TextField onKeyDown={e => {
-            if (e.key === 'Enter') {
-              setId(e.target.value)
-              history.push(`/sma/${e.target.value}/roe`)
-            }
-          }} fullWidth id="outlined-basic" label="Id" variant="outlined" /> */}
           <SearchBar onChange={(sid) => {
             setId(sid)
             history.push(`/sma/${sid}/roe`)
