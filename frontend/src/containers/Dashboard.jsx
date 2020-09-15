@@ -12,6 +12,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { Box, ListItemIcon, TextField } from '@material-ui/core';
 import { getReport } from '../services';
 import { StarRate } from '@material-ui/icons';
+import { SearchBar } from '../components/SearchBar'
 
 const drawerWidth = 300;
 
@@ -70,7 +71,6 @@ export default function Dashboard() {
               <Link style={{ textDecoration: 'none', color: 'black' }} to={tabs[text]}>
                 <ListItem button key={text}>
                   <ListItemIcon><StarRate /> </ListItemIcon>
-
                   <ListItemText primary={text} />
                 </ListItem>
               </Link>
@@ -81,12 +81,16 @@ export default function Dashboard() {
       </Drawer>
       <main className={classes.content}>
         <Box width={500} m={"auto"} >
-          <TextField onKeyDown={e => {
+          {/* <TextField onKeyDown={e => {
             if (e.key === 'Enter') {
               setId(e.target.value)
               history.push(`/sma/${e.target.value}/roe`)
             }
-          }} fullWidth id="outlined-basic" label="Id" variant="outlined" />
+          }} fullWidth id="outlined-basic" label="Id" variant="outlined" /> */}
+          <SearchBar onChange={(sid) => {
+            setId(sid)
+            history.push(`/sma/${sid}/roe`)
+          }} />
         </Box>
         <Toolbar />
         <AppRouter data={data} />

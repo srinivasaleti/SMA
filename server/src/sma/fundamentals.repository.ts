@@ -44,6 +44,11 @@ export class FundamentalsRepository {
     return this.tickerTapeTransformer.transformHoldings(data);
   }
 
+  async search(text) {
+    const url = `https://api.tickertape.in/search?text=${text}`;
+    console.log(url)
+    return (await axios.get(url)).data;
+  }
 
   async report(id) {
     const promises = await Promise.all([

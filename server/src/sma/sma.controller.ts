@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import axios from 'axios';
 import { FundamentalsRepository } from './fundamentals.repository';
 @Controller()
@@ -35,6 +35,11 @@ export class SMAController {
   @Get('/holdings/:id')
   async holdings(@Param() params) {
     return this.fundamentalRepo.holdings(params.id);
+  }
+
+  @Get('/search')
+  async search(@Query() query) {
+    return this.fundamentalRepo.search(query.text);
   }
 
 }
