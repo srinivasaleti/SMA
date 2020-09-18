@@ -46,7 +46,6 @@ export class FundamentalsRepository {
 
   async search(text) {
     const url = `https://api.tickertape.in/search?text=${text}`;
-    console.log(url)
     return (await axios.get(url)).data;
   }
 

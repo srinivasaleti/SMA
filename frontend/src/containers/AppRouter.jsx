@@ -6,6 +6,7 @@ import {
 import { ROE } from './ROE';
 import { DERatio } from './DERatio';
 import { HOLDINGS } from './Holdings';
+import { EPS } from './EPS';
 
 export const AppRouter = (props) => {
 
@@ -17,6 +18,9 @@ export const AppRouter = (props) => {
         </Route>
         <Route path="/sma/:id/de">
           <DERatio data={props.data} />
+        </Route>
+        <Route path="/sma/:id/eps">
+          <EPS data={props.data} />
         </Route>
         <Route path="/sma/:id/holdings">
           <HOLDINGS data={props.data} />

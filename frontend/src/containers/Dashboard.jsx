@@ -53,7 +53,10 @@ export default function Dashboard() {
   }, [id])
 
 
-  const tabs = { 'ROE': `/sma/${id}/roe`, 'D/E': `/sma/${id}/de`, 'Holdings': `/sma/${id}/holdings` };
+  const tabs = {
+    'ROE': `/sma/${id}/roe`, 'D/E': `/sma/${id}/de`,
+    'EPS': `/sma/${id}/eps`, 'Holdings': `/sma/${id}/holdings`
+  };
   return (
     <div className={classes.root}>
       <CssBaseline />

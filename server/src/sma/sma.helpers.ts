@@ -9,3 +9,7 @@ export const shareHoldingEquity = (balanceSheetOfYear: any) => {
 export const debtToEquityRatio = (totalLiabilities, _shareHoldingEquity) => {
   return totalLiabilities / _shareHoldingEquity;
 }
+
+export const workingCapitalRatio = (currentAsset, currentLiabilities) => {
+  return currentAsset / currentLiabilities;
+}

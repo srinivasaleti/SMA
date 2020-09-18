@@ -4,9 +4,12 @@ import { Injectable } from '@nestjs/common';
 export class TickerTapeTransformer {
   transformBalanceSheet(data: any) {
     return data?.data?.map(x => {
+
       return {
         displayPeriod: x.displayPeriod,
+        currentAsset: x.balTca,
         totalAsset: x.balTota,
+        currentLiabilities: x.balTcl,
         totalLiabilities: x.balTotl,
         totalEquity: x.balTeq,
         totalLibalitiesAndShareEquity: x.balTlse,

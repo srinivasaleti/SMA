@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { debtToEquityRatio, ROE, shareHoldingEquity } from './sma.helpers';
+import { debtToEquityRatio, ROE, shareHoldingEquity, workingCapitalRatio } from './sma.helpers';
 
 @Injectable()
 export class FRGService {
@@ -22,8 +22,13 @@ export class FRGService {
       const totalLiabilities = balanceSheetOfYear?.totalLiabilities;
       financials[x] = {
         netIncome: incomeStatementOfYear?.netIncome,
+        eps: incomeStatementOfYear?.eps,
+        dps: incomeStatementOfYear?.dps,
         totalAsset: balanceSheetOfYear?.totalAsset,
         totalLiabilities: balanceSheetOfYear?.totalLiabilities,
+        currentAsset: balanceSheetOfYear?.currentAsset,
+        currentLiabilities: balanceSheetOfYear?.currentLiabilities,
+        workingCapitalRatio: workingCapitalRatio(balanceSheetOfYear?.currentAsset, balanceSheetOfYear?.currentLiabilities),
         shareHoldingEquity: _shareHoldingEquity,
         ROE: ROE(netIncome, _shareHoldingEquity),
         debtToEquityRatio: debtToEquityRatio(totalLiabilities, _shareHoldingEquity)
