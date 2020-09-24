@@ -14,6 +14,7 @@ export const SubTitleTextTypography = withStyles({
     fontSize: "32px",
     fontWeight: "bold",
     fontFamily: "Calibri",
+    textAlign: "center"
   }
 })(Typography);
 

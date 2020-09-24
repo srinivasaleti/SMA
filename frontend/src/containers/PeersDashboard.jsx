@@ -7,7 +7,7 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { AppRouter } from './AppRouter';
+import { PeersRouter } from './PeersRouter';
 import { Link, useHistory } from 'react-router-dom';
 import { Box, ListItemIcon, TextField } from '@material-ui/core';
 import { getReport } from '../services';
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard() {
+export default function PeersDashboard() {
   const classes = useStyles();
   const history = useHistory();
   const [id, setId] = useState('RELI')
@@ -54,8 +54,8 @@ export default function Dashboard() {
 
 
   const tabs = {
-    'ROE': `/sma/${id}/roe`, 'D/E': `/sma/${id}/de`,
-    'EPS': `/sma/${id}/eps`, 'Holdings': `/sma/${id}/holdings`
+    'ROE': `/peers/${id}/roe`, 'D/E': `/peers/${id}/de`,
+    'EPS': `/peers/${id}/eps`, 'Holdings': `/peers/${id}/holdings`
   };
   return (
     <div className={classes.root}>
@@ -86,11 +86,11 @@ export default function Dashboard() {
         <Box width={500} m={"auto"} >
           <SearchBar onChange={(sid) => {
             setId(sid)
-            history.push(`/sma/${sid}/roe`)
+            history.push(`/peers/${sid}/roe`)
           }} />
         </Box>
         <Toolbar />
-        <AppRouter data={data} />
+        <PeersRouter data={data} />
       </main>
     </div>
   );

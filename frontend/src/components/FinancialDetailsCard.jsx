@@ -6,10 +6,12 @@ import { floatUpto2Decimals } from './utils';
 const useStyles = makeStyles((theme) => {
   return {
     root: {
-      width: '300px',
+      maxWidth: '400px',
       minHeight: '200px',
+      padding: '20px',
       fontSize: '15px',
       color: theme.text.primary,
+      boxShadow: "1px 1px 9px 1px darkgrey"
     },
     list: {
       height: '400px',
@@ -27,8 +29,11 @@ const useStyles = makeStyles((theme) => {
 export const FinancialDetailsCard = (props) => {
   const classes = useStyles();
 
+
   const report = props.data?.report?.financials || {};
+
   const name = props.data?.name
+  console.log(name)
   return (
     <Card className={classes.root}>
       <CardTitleTypography>{name}</CardTitleTypography>

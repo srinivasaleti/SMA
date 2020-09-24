@@ -31,8 +31,7 @@ export const SearchBar = (props) => {
         onChange={(e, val) => {
           props.onChange(val.sid)
         }}
-
-        style={{ width: 300 }}
+        style={{ width: "100%" }}
         renderInput={(params) => <TextField {...params}
           onChange={onSearchChange}
           label="Combo box" variant="outlined" />}

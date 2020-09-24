@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => {
     root: {
       minHeight: '400px',
       color: theme.text.primary,
+      boxShadow: "1px 1px 9px 1px darkgrey"
     },
     tableCell: {
       fontSize: '16px',

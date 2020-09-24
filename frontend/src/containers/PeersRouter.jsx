@@ -8,21 +8,21 @@ import { DERatio } from './DERatio';
 import { HOLDINGS } from './Holdings';
 import { EPS } from './EPS';
 
-export const AppRouter = (props) => {
+export const PeersRouter = (props) => {
 
   return (
     <div>
       <Switch>
-        <Route path="/sma/:id/roe">
+        <Route path="/peers/:id/roe">
           <ROE data={props.data} />
         </Route>
-        <Route path="/sma/:id/de">
+        <Route path="/peers/:id/de">
           <DERatio data={props.data} />
         </Route>
-        <Route path="/sma/:id/eps">
+        <Route path="/peers/:id/eps">
           <EPS data={props.data} />
         </Route>
-        <Route path="/sma/:id/holdings">
+        <Route path="/peers/:id/holdings">
           <HOLDINGS data={props.data} />
         </Route>
       </Switch>
