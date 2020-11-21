@@ -10,6 +10,7 @@
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
+    "checklist": "ts-node src/check.ts",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
@@ -32,6 +33,8 @@
     "@nestjs/platform-express": "^7.0.0",
     "dotenv": "^8.2.0",
     "jscpd": "^3.1.0",
+    "json-to-table": "^4.2.1",
+    "node-emoji": "^1.10.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.4"

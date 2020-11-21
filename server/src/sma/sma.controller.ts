@@ -1,9 +1,8 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
-import axios from 'axios';
-import { FundamentalsRepository } from './fundamentals.repository';
+import {Controller, Get, Param, Query} from '@nestjs/common';
+import {FundamentalsRepository} from './fundamentals.repository';
 @Controller()
 export class SMAController {
-  constructor(private readonly fundamentalRepo: FundamentalsRepository) { }
+  constructor(private readonly fundamentalRepo: FundamentalsRepository) {}
 
   @Get('/balance-sheet/:id/:type')
   async balanceSheet(@Param() params) {
@@ -15,7 +14,6 @@ export class SMAController {
     return this.fundamentalRepo.income(params.id, params.type);
   }
 
-
   @Get('/report/:id')
   async report(@Param() params) {
     return this.fundamentalRepo.report(params.id);
@@ -25,7 +23,6 @@ export class SMAController {
   async peers(@Param() params) {
     return this.fundamentalRepo.peers(params.id);
   }
-
 
   @Get('/peers/report/:id/')
   async peersReport(@Param() params) {
@@ -41,5 +38,4 @@ export class SMAController {
   async search(@Query() query) {
     return this.fundamentalRepo.search(query.text);
   }
-
 }

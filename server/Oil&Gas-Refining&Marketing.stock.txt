@@ -1,0 +1,8 @@
+
+Matched ⭐ Bharat Petroleum Corporation Ltd(BPCL): Avg ROE: 20.892379378943428 , D/E: 2.9094381613665776
+
+Matched ⭐ Indian Oil Corporation Ltd(IOC): Avg ROE: 13.12645979267011 , D/E: 2.427312598248046
+
+Matched ⭐ Reliance Industries Ltd(RELI): Avg ROE: 10.912795795858774 , D/E: 1.5209115914918705
+
+Matched ⭐ Hindustan Petroleum Corp Ltd(HPCL): Avg ROE: 25.186961226943453 , D/E: 2.773774701732888

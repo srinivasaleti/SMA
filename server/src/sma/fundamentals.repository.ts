@@ -1,12 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import {Injectable} from '@nestjs/common';
 import axios from 'axios';
-import { FRGService } from './finance.report.service';
-import { debtToEquityRatio, ROE, shareHoldingEquity } from './sma.helpers';
-import { TickerTapeTransformer } from './tickertape.transformer';
+import {FRGService} from './finance.report.service';
+import {TickerTapeTransformer} from './tickertape.transformer';
 
 @Injectable()
 export class FundamentalsRepository {
-  constructor(private tickerTapeTransformer: TickerTapeTransformer, private frgService: FRGService) { }
+  constructor(private tickerTapeTransformer: TickerTapeTransformer, private frgService: FRGService) {}
   // NOTE: type can be normal, growth
   async balanceSheet(id, type, count = 10) {
     const url = `https://api.tickertape.in/stocks/financials/balancesheet/${id}/annual/${type}?count=${count}`;
@@ -36,7 +35,6 @@ export class FundamentalsRepository {
     return await this.tickerTapeTransformer.transformPeersReport(promises, peersDataMap);
   }
 
-
   async holdings(id) {
     const url = `https://api.tickertape.in/stocks/holdings/${id}`;
     const response = await axios.get(url);
@@ -49,15 +47,17 @@ export class FundamentalsRepository {
     return (await axios.get(url)).data;
   }
 
+  async getInfo(id) {
+    const url = `https://api.tickertape.in/stocks/info/${id}`;
+    return (await axios.get(url)).data.data;
+  }
   async report(id) {
-    const promises = await Promise.all([
-      this.income(id, 'normal'), this.balanceSheet(id, 'normal'), this.holdings(id)
-    ]);
+    const promises = await Promise.all([this.income(id, 'normal'), this.balanceSheet(id, 'normal'), this.holdings(id)]);
     const _incomeStatement = promises[0];
     const _balanceSheet = promises[1];
 
     const result = this.frgService.generateReport(_incomeStatement, _balanceSheet);
-    return { [id]: { financials: result, holdings: promises[2] } };
+    const info = await this.getInfo(id);
+    return {[id]: {financials: result, holdings: promises[2], info}};
   }
-
 }

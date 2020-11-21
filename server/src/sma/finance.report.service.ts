@@ -1,16 +1,16 @@
-import { Injectable } from '@nestjs/common';
-import { debtToEquityRatio, ROE, shareHoldingEquity, workingCapitalRatio } from './sma.helpers';
+import {Injectable} from '@nestjs/common';
+import {debtToEquityRatio, ROE, shareHoldingEquity, workingCapitalRatio} from './sma.helpers';
 
 @Injectable()
 export class FRGService {
   generateReport(_incomeStatement: any, _balanceSheet: any) {
     const incomeStatement = _incomeStatement.reduce((acc, curr) => {
       const displayPeriod = curr.displayPeriod;
-      return { ...acc, [displayPeriod.split(' ')[1]]: curr };
+      return {...acc, [displayPeriod.split(' ')[1]]: curr};
     }, {});
     const balanceSheet = _balanceSheet.reduce((acc, curr) => {
       const displayPeriod = curr.displayPeriod;
-      return { ...acc, [displayPeriod.split(' ')[1]]: curr };
+      return {...acc, [displayPeriod.split(' ')[1]]: curr};
     }, {});
     const financials = {};
 
@@ -28,10 +28,13 @@ export class FRGService {
         totalLiabilities: balanceSheetOfYear?.totalLiabilities,
         currentAsset: balanceSheetOfYear?.currentAsset,
         currentLiabilities: balanceSheetOfYear?.currentLiabilities,
-        workingCapitalRatio: workingCapitalRatio(balanceSheetOfYear?.currentAsset, balanceSheetOfYear?.currentLiabilities),
+        workingCapitalRatio: workingCapitalRatio(
+          balanceSheetOfYear?.currentAsset,
+          balanceSheetOfYear?.currentLiabilities,
+        ),
         shareHoldingEquity: _shareHoldingEquity,
         ROE: ROE(netIncome, _shareHoldingEquity),
-        debtToEquityRatio: debtToEquityRatio(totalLiabilities, _shareHoldingEquity)
+        debtToEquityRatio: debtToEquityRatio(totalLiabilities, _shareHoldingEquity),
       };
     });
     return financials;

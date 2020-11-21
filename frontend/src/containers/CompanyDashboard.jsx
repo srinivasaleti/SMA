@@ -6,6 +6,7 @@ import { config } from '../config';
 import { FinancialDetailsCard } from '../components/FinancialDetailsCard';
 import { HoldingsCard } from '../components/HoldingsCard';
 import { SubTitleTextTypography, TitleTextTypography } from '../components/typography';
+import Info from '../components/Info';
 
 export default function CompanyDashboard() {
   const [sid, setSid] = useState('RELI')
@@ -37,21 +38,28 @@ export default function CompanyDashboard() {
       {loading && <Box width={100} m={"auto"}><CircularProgress /></Box>}
 
       <Box m={"auto"} p={2} >
-        <Box m={2}><SubTitleTextTypography >Financial</SubTitleTextTypography></Box>
-        <Grid container spacing={8}>
-          <Grid item md={3} xs={12}>
-            <FinancialDetailsCard property={"ROE"} title={sid} data={{ report: data, name: 'ROE' }} suffix="%" />
+        <Box >
+          <Box m={2}><SubTitleTextTypography >Info</SubTitleTextTypography></Box>
+          <Info title={sid} data={data.info || {}} suffix="%" />
+        </Box>
+
+        <Box>
+          <Box m={2}><SubTitleTextTypography >Financial</SubTitleTextTypography></Box>
+          <Grid container spacing={8}>
+            <Grid item md={3} xs={12}>
+              <FinancialDetailsCard property={"ROE"} title={sid} data={{ report: data, name: 'ROE' }} suffix="%" />
+            </Grid>
+            <Grid item md={3} xs={12}>
+              <FinancialDetailsCard property={'debtToEquityRatio'} title={sid} data={{ report: data, name: 'D/E' }} suffix="%" />
+            </Grid>
+            <Grid item md={3} xs={12}>
+              <FinancialDetailsCard property={"eps"} title={sid} data={{ report: data, name: 'EPS' }} suffix="$" />
+            </Grid>
+            <Grid item md={3} xs={12}>
+              <FinancialDetailsCard property={"workingCapitalRatio"} title={sid} data={{ report: data, name: 'Working Capital Ratio' }} suffix="%" />
+            </Grid>
           </Grid>
-          <Grid item md={3} xs={12}>
-            <FinancialDetailsCard property={'debtToEquityRatio'} title={sid} data={{ report: data, name: 'D/E' }} suffix="%" />
-          </Grid>
-          <Grid item md={3} xs={12}>
-            <FinancialDetailsCard property={"eps"} title={sid} data={{ report: data, name: 'EPS' }} suffix="$" />
-          </Grid>
-          <Grid item md={3} xs={12}>
-            <FinancialDetailsCard property={"workingCapitalRatio"} title={sid} data={{ report: data, name: 'Working Capital Ratio' }} suffix="%" />
-          </Grid>
-        </Grid>
+        </Box>
         <Box m={8}>
           <Box m={2}><SubTitleTextTypography >Holdings</SubTitleTextTypography></Box>
           <HoldingsCard title={sid} data={{ report: data }} suffix="%" />
